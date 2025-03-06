@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Realistic Clock</title>
+    <style>
+      /* Center the clock container */
+      body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #1e1e2f, #3a1c71, #ff0084);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Clock Face */
+      .clock {
+        width: 500px;
+        height: 500px;
+        background-color: black;
+        border-radius: 50%;
+        position: relative;
+
+        box-shadow: 0px 0px 20px rgba(255, 0, 255, 0.7);
+        transform: rotate(-90deg);
+      }
+
+      /* Center Dot */
+      .center-dot {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background-color: black;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* Hour Markers */
+      .marker {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform-origin: 0 0;
+      }
+
+      /* Positions for hour markers */
+      .marker:nth-child(2) {
+        transform: translate(-50%, -50%) rotate(0deg) translate(200px);
+      }
+      .marker:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(30deg) translate(200px);
+      }
+      .marker:nth-child(4) {
+        transform: translate(-50%, -50%) rotate(60deg) translate(200px);
+      }
+      .marker:nth-child(5) {
+        transform: translate(-50%, -50%) rotate(90deg) translate(200px);
+      }
+      .marker:nth-child(6) {
+        transform: translate(-50%, -50%) rotate(120deg) translate(200px);
+      }
+      .marker:nth-child(7) {
+        transform: translate(-50%, -50%) rotate(150deg) translate(200px);
+      }
+      .marker:nth-child(8) {
+        transform: translate(-50%, -50%) rotate(180deg) translate(200px);
+      }
+      .marker:nth-child(9) {
+        transform: translate(-50%, -50%) rotate(210deg) translate(200px);
+      }
+      .marker:nth-child(10) {
+        transform: translate(-50%, -50%) rotate(240deg) translate(200px);
+      }
+      .marker:nth-child(11) {
+        transform: translate(-50%, -50%) rotate(270deg) translate(200px);
+      }
+      .marker:nth-child(12) {
+        transform: translate(-50%, -50%) rotate(300deg) translate(200px);
+      }
+      .marker:nth-child(13) {
+        transform: translate(-50%, -50%) rotate(330deg) translate(200px);
+      }
+
+      /* Clock Hands */
+      #second,
+      #minute,
+      #hour {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: 0% 50%;
+      }
+
+      #second {
+        width: 170px;
+        height: 2px;
+        background-color: red;
+        border-radius: 50%;
+      }
+
+      #minute {
+        width: 140px;
+        height: 6px;
+        background-color: white;
+        border-radius: 50%;
+      }
+
+      #hour {
+        width: 100px;
+        height: 8px;
+        background-color: white;
+        border-radius: 50%;
+      }
+      #digital-clock {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        color: white;
+        font-family: Arial, sans-serif;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="digital-clock"></div>
+
+    <div class="clock">
+      <div class="center-dot"></div>
+
+      <!-- Hour Markers -->
+      <div class="marker"></div>
+      <div class="marker"></div>
+      <div class="marker"></div>
+      <div class="marker"></div>
+      <div class="marker"></div>
+      <div class="marker"></div>
+      <div class="marker"></div>
+      <div class="marker"></div>
+      <div class="marker"></div>
+      <div class="marker"></div>
+      <div class="marker"></div>
+      <div class="marker"></div>
+
+      <!-- Clock Hands -->
+      <div id="second"></div>
+      <div id="minute"></div>
+      <div id="hour"></div>
+    </div>
+
+    <script>
+      const hourHand = document.getElementById("hour");
+      const minuteHand = document.getElementById("minute");
+      const secondHand = document.getElementById("second");
+
+      function updateClock() {
+        const now = new Date();
+        const seconds = now.getSeconds();
+        const minutes = now.getMinutes();
+        const hours = now.getHours();
+
+        // Calculate degrees for each hand
+        const secondDeg = (seconds / 60) * 360;
+        const minuteDeg = (minutes / 60) * 360 + (seconds / 60) * 6;
+        const hourDeg = (hours % 12) * 30 + (minutes / 60) * 30;
+
+        // Rotate the clock hands to match the current time
+        secondHand.style.transform = `rotate(${secondDeg}deg)`;
+        minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
+        hourHand.style.transform = `rotate(${hourDeg}deg)`;
+
+        document.getElementById("digital-clock").textContent = `${hours
+          .toString()
+          .padStart(2, "0")}:
+     ${minutes.toString().padStart(2, "0")}:
+     ${seconds.toString().padStart(2, "0")}`;
+      }
+
+      // Update the clock every second
+      setInterval(updateClock, 1000);
+
+      // Initialize the clock when the page loads
+      updateClock();
+    </script>
+  </body>
+</html>
