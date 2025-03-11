@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clock</title>
     <style>
-      /* Center the clock container */
+      /* General Styles */
       body {
         margin: 0;
         height: 100vh;
@@ -17,14 +17,15 @@
         overflow: hidden;
       }
 
-      /* Clock Face */
+      /* Clock Container */
       .clock {
-        width: 500px;
-        height: 500px;
+        width: 100vw;
+        max-width: 500px;
+        height: 100vw;
+        max-height: 500px;
         background-color: black;
         border-radius: 50%;
         position: relative;
-
         box-shadow: 0px 0px 20px rgba(255, 0, 255, 0.7);
         transform: rotate(-90deg);
       }
@@ -32,9 +33,11 @@
       /* Center Dot */
       .center-dot {
         position: absolute;
-        width: 15px;
-        height: 15px;
-        background-color: black;
+        width: 3vw;
+        max-width: 10px;
+        height: 3vw;
+        max-height: 10px;
+        background-color: rgb(249, 243, 243);
         border-radius: 50%;
         top: 50%;
         left: 50%;
@@ -44,51 +47,65 @@
       /* Hour Markers */
       .marker {
         position: absolute;
-        width: 10px;
-        height: 10px;
+        width: 2vw;
+        max-width: 8px;
+        height: 2vw;
+        max-height: 8px;
         background-color: white;
         border-radius: 50%;
         top: 50%;
         left: 50%;
-        transform-origin: 0 0;
+        transform-origin: center;
       }
 
-      /* Positions for hour markers */
+      /* Position of Hour  */
       .marker:nth-child(2) {
-        transform: translate(-50%, -50%) rotate(0deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(0deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
       .marker:nth-child(3) {
-        transform: translate(-50%, -50%) rotate(30deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(30deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
       .marker:nth-child(4) {
-        transform: translate(-50%, -50%) rotate(60deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(60deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
       .marker:nth-child(5) {
-        transform: translate(-50%, -50%) rotate(90deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(90deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
       .marker:nth-child(6) {
-        transform: translate(-50%, -50%) rotate(120deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(120deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
       .marker:nth-child(7) {
-        transform: translate(-50%, -50%) rotate(150deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(150deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
       .marker:nth-child(8) {
-        transform: translate(-50%, -50%) rotate(180deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(180deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
       .marker:nth-child(9) {
-        transform: translate(-50%, -50%) rotate(210deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(210deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
       .marker:nth-child(10) {
-        transform: translate(-50%, -50%) rotate(240deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(240deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
       .marker:nth-child(11) {
-        transform: translate(-50%, -50%) rotate(270deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(270deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
       .marker:nth-child(12) {
-        transform: translate(-50%, -50%) rotate(300deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(300deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
       .marker:nth-child(13) {
-        transform: translate(-50%, -50%) rotate(330deg) translate(200px);
+        transform: translate(-50%, -50%) rotate(330deg)
+          translate(calc(min(500px, 100vw) / 2.4));
       }
 
       /* Clock Hands */
@@ -102,34 +119,37 @@
       }
 
       #second {
-        width: 170px;
-        height: 2px;
+        width: 36%;
+        height: 1px;
         background-color: red;
         border-radius: 50%;
       }
 
       #minute {
-        width: 140px;
-        height: 6px;
+        width: 31%;
+        height: 4px;
         background-color: white;
         border-radius: 50%;
       }
 
       #hour {
-        width: 100px;
-        height: 8px;
+        width: 25%;
+        height: 6px;
         background-color: white;
         border-radius: 50%;
       }
+
+      /* Digital Clock */
       #digital-clock {
         position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 24px;
+        top: 10px;
+        right: 10px;
+        font-size: 4vw;
+        max-font-size: 20px;
         color: white;
         font-family: Arial, sans-serif;
         background: rgba(0, 0, 0, 0.5);
-        padding: 10px 20px;
+        padding: 5px 10px;
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
       }
